@@ -157,6 +157,14 @@ async function MarathonManager() {
               className="w-full px-4 py-3 border border-gray-200 rounded-xl text-gray-700 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
               required
             />
+            {/* Добавлено поле ОЖ после ОТ */}
+            <input
+              type="number"
+              name="oj"
+              placeholder="ОЖ (см)"
+              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-gray-700 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              required
+            />
             <input
               type="number"
               name="ob"
@@ -279,7 +287,7 @@ async function MarathonManager() {
         </div>
       </div>
 
-      {/* 3. АДМІНСЬКА ТАБЛИЦЯ (Исправлено для полного экспорта на мобильных) */}
+      {/* 3. АДМІНСЬКА ТАБЛИЦЯ */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-4 sm:p-6 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
@@ -299,7 +307,6 @@ async function MarathonManager() {
         </div>
 
         <div id="marathon-table-report" className="p-2 sm:p-4 bg-white">
-          {/* Класс exportable-table-container теперь управляет поведением при рендере картинки */}
           <div className="exportable-table-container overflow-x-auto rounded-xl border border-gray-100">
             <table className="w-full text-left border-collapse min-w-[750px]">
               <thead>
@@ -345,8 +352,9 @@ async function MarathonManager() {
                               <div className="font-medium text-gray-900">
                                 {m.weight} кг
                               </div>
+                              {/* Вывод ОЖ после ОТ */}
                               <div className="text-[10px] sm:text-[11px] text-gray-400 font-mono tracking-tight">
-                                ОГ:{m.og} ОТ:{m.ot} ОС:{m.ob}
+                                ОГ:{m.og} ОТ:{m.ot} ОЖ:{m.oj ?? "—"} ОС:{m.ob}
                               </div>
                               {progress !== null && (
                                 <div
